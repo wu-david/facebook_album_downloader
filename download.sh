@@ -2,7 +2,7 @@
 
 if [ -f 'AUTH_TOKEN' ]; then
     TOKEN=$(cat AUTH_TOKEN)
-#rm -f 'AUTH_TOKEN'
+    rm -f 'AUTH_TOKEN'
 else
     echo "AUTH_TOKEN file does not exist."
     echo "Request access token at https://developers.facebook.com/tools/explorer"
@@ -22,8 +22,11 @@ else
 fi
 echo "Saving photos to $PHOTOS_DIR"
 
-ALBUMS_GET="https://graph.facebook.com/me/albums?access_token=$TOKEN"
+#ALBUMS_GET="https://graph.facebook.com/me/albums?access_token=$TOKEN"
 
-echo "$ALBUMS_GET"
+#echo "$ALBUMS_GET"
+if [ -f 'helper.py' ]; then
+    ./helper.py $TOKEN $PHOTOS_DIR
+fi
 
 exit 0
